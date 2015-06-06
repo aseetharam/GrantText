@@ -1,5 +1,9 @@
+/begin{article}
+
+$a + b + c $
 Bioinformatics service and training: 
 We estimate X person hours in Year 1, Y hours in Year 2, and Z hours in Year 3.  Cost is $52/person hour = $X*52 in Year 1 and $Y*52 in Year 2 and $Z*52 in Year 3.  This time estimate is based on previous experience performing (insert bioinformatics analyses required (ie genome assembly, transcriptome assembly, BLAST analyses and comparative analyses)  The majority of the person hours will be spent on training of the graduate student in the first year using the data from (insert genus species), with an estimated ~A hours per week for B weeks.  In the following two years the number of hours required for training will be reduced as the student will be able to work more independently.
 
 Compute time:  
 An estimated (Total sequencing cost - estimated person hours cost) will cover the estimated compute time required of to complete the project (Compute cost/$0.35 cpu hours at $0.35/cpu hour), divided over three years.  The amount of compute time will increase as the graduate student becomes more competent in his or her bioinformatics abilities.   Thus, we estimate J% of the cost for compute time will be in Year 1 (J*compute cost), K% in Year 2 (K*compute cost) and the remaining (1-(J+K))% in Year 3 ($1-(J+K)*compute cost).
+/end{article}
