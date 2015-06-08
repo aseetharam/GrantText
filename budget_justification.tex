@@ -1,9 +1,67 @@
-/begin{article}
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{calc}
+\usepackage[nomessages]{fp}
 
-$a + b + c $
-Bioinformatics service and training: 
-We estimate X person hours in Year 1, Y hours in Year 2, and Z hours in Year 3.  Cost is $52/person hour = $X*52 in Year 1 and $Y*52 in Year 2 and $Z*52 in Year 3.  This time estimate is based on previous experience performing (insert bioinformatics analyses required (ie genome assembly, transcriptome assembly, BLAST analyses and comparative analyses)  The majority of the person hours will be spent on training of the graduate student in the first year using the data from (insert genus species), with an estimated ~A hours per week for B weeks.  In the following two years the number of hours required for training will be reduced as the student will be able to work more independently.
+\begin{document}
 
-Compute time:  
-An estimated (Total sequencing cost - estimated person hours cost) will cover the estimated compute time required of to complete the project (Compute cost/$0.35 cpu hours at $0.35/cpu hour), divided over three years.  The amount of compute time will increase as the graduate student becomes more competent in his or her bioinformatics abilities.   Thus, we estimate J% of the cost for compute time will be in Year 1 (J*compute cost), K% in Year 2 (K*compute cost) and the remaining (1-(J+K))% in Year 3 ($1-(J+K)*compute cost).
-/end{article}
+%cost of sequencing
+\newcommand{\CostSequencing}{ 10000 }
+
+\newcommand{\bioinformatics}{genome assembly, transcribpome assembly, BLAST analyses and comparative analyses}
+\newcommand{\speciesName}{ Seriola lalandi }
+
+%rates of bioinformatics analyses
+\newcommand{\CostTraining}{ 52 }
+\newcommand{\CostCompute}{ 0.35 }
+
+%number of training hours
+\newcommand{\NumHoursYrOne}{ 10 }
+\newcommand{\NumHoursYrTwo}{ 20 }
+\newcommand{\NumHoursYrThree}{ 30 }
+
+%Cost of sequencing minus cost of training
+\FPeval{resultCSeqmCTrain}{round(\CostSequencing - \CostTraining*(\NumHoursYrOne+\NumHoursYrTwo+\NumHoursYrThree),0)}
+\FPeval{resultCCPUtime}{round(\resultCSeqmCTrain/0.35,0)}
+
+%percentage of compute to be used in years one two and three
+\newcommand{\percentComputeYrOne}{ 10 }
+\newcommand{\percentComputeYrTwo}{ 30 }
+\FPeval{percentComputeYrThree}{round(100-\percentComputeYrOne-\percentComputeYrTwo,0)}  
+%cost of compute per year
+\FPeval{resultCostComputeYrOne}{round(\percentComputeYrOne/100 * \resultCCPUtime,0)}
+\FPeval{resultCostComputeYrTwo}{round(\percentComputeYrTwo/100 * \resultCCPUtime,0)}
+\FPeval{resultCostComputeYrThree}{round(\percentComputeYrThree/100 * \resultCCPUtime,0)}
+
+
+%number of cpu hours in years one, two and three
+\newcommand{\NumCPUHoursYrOne}{ 1000 }
+\newcommand{\NumCPUHoursYrTwo}{ 2000 }
+\newcommand{\NumCPUHoursYrThree}{ 3000 }
+
+%Cost of training times number of hours in year One, two and Three
+\FPeval{resultCTxNHyrOne}{round(\NumHoursYrOne * \CostTraining,0)}  
+\FPeval{resultCTxNHyrTwo}{round(\NumHoursYrTwo * \CostTraining,0)}  
+\FPeval{resultCTxNHyrThree}{round(\NumHoursYrThree * \CostTraining,0)}
+
+  
+
+
+\section{Bioinformatics Services and Training:}
+
+
+We estimate \NumHoursYrOne person hours in Year 1, \NumHoursYrTwo hours in Year 2, and \NumHoursYrThree hours in Year 3. Cost is \$\CostTraining per person hour =  \$\resultCTxNHyrOne in Year 1 and \resultCTxNHyrTwo in Year 2 and \resultCTxNHyrThree in Year 3.  The time esitmated is based on previous experience performing (\bioinformatics). The majority of the person hours will be spent on training of the graduate student in the first year using the data from (\speciesName), with an estimated ~A hours per week for B weeks.  In the following two years the number of hours required for training will be reduced as the student will be able to work more independently.
+
+\section{Compute time:}
+An estimated \$\resultCSeqmCTrain \hspace{1 pt} will cover the estimated compute time required of to complete the project (\resultCCPUtime \hspace{1 pt} cpu hours at \$\CostCompute  per cpu hour), divided over three years.  The amount of compute time will increase as the graduate student becomes more competent in his or her bioinformatics abilities.   Thus, we estimate \percentComputeYrOne\% of the cost for compute time will be in Year 1 (\$\resultCostComputeYrOne), \percentComputeYrTwo\% in Year 2 (\$\resultCostComputeYrTwo) and the remaining \percentComputeYrThree\% in Year 3 (\$\resultCostComputeYrThree).
+
+  
+ 
+
+
+
+
+
+
+\end{document}
