@@ -1,0 +1,47 @@
+
+
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{calc}
+\usepackage[nomessages]{fp}
+
+\newcommand{\testvariable}{ 100 }
+\begin{document}
+
+\title{Budget Justification Text}
+\author{Andrew Severin}
+
+\maketitle
+
+Putting a variable into a paragraph \testvariable may prove to be more challenging \testvariable then I believe \testvariable
+
+$a + b + \testvariable*10$
+
+\FPeval{result}{round(2*\testvariable,2)} 
+\result
+
+\begin{abstract}
+The abstract text goes here.
+\end{abstract}
+
+\section{Introduction}
+Here is the text of your introduction.
+
+%\input{methods}
+
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+\end{equation}
+
+\subsection{Subsection Heading Here}
+Write your subsection text here.
+
+
+\section{Conclusion}
+Write your conclusion here.
+
+\end{document}
+
